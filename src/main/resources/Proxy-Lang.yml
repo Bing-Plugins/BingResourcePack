@@ -1,0 +1,7 @@
+# 通用 Universal
+main-get-help: "查看帮助使用 /BingPremium help"
+reload-success: "&a成功重载配置文件"
+
+main-command-help: |-
+  &e/BingResourcePack help &7- &r查看帮助
+  &e/BingResourcePack reload &7- &r重载配置

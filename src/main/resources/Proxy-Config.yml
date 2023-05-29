@@ -1,0 +1,29 @@
+# 进入服务器时的发送延迟
+global-send-delay: 20
+# 空资源包名称
+empty-resource-pack-name: empty
+# 匹配规则
+match-rules:
+  lobby:
+    pack: rank
+  horrorfarmer:
+    pack: horrorfarmer
+    regex: hf_.*
+  undertensai:
+    pack: undertensai
+    regex: ut_[^0].*
+  uhc:
+    pack: uhc
+    regex: uhc_.*
+# 资源包
+resource-packs:
+  empty:
+    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/empty/Empty.zip
+  rank:
+    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/rank/Rank.zip
+  horrorfarmer:
+    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/horrorfarmer/HorrorFarmer.zip
+  undertensai:
+    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/undertensai/UTP.zip
+  uhc:
+    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/uhc/UHC.zip
