@@ -4,6 +4,7 @@ import cn.yistars.resourcepack.BingResourcePack;
 import cn.yistars.resourcepack.config.lib.Configuration;
 import cn.yistars.resourcepack.config.lib.ConfigurationProvider;
 import cn.yistars.resourcepack.config.lib.YamlConfiguration;
+import cn.yistars.resourcepack.pack.PackManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class ConfigManager {
     public static void reloadConfig() {
         checkConfig();
         loadConfig();
+
+        PackManager.reloadPack();
     }
 
     private static void checkConfig() {
