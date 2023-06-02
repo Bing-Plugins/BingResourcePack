@@ -26,5 +26,6 @@ resource-packs:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/horrorfarmer/HorrorFarmer.zip
   under-tensai:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/undertensai/UTP.zip
+    force: true
   uhc:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/uhc/UHC.zip

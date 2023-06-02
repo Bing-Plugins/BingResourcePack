@@ -1,4 +1,4 @@
-package cn.yistars.resourcepack.group;
+package cn.yistars.resourcepack.pack;
 
 import cn.yistars.resourcepack.BingResourcePack;
 import com.velocitypowered.api.proxy.Player;
@@ -14,11 +14,13 @@ import java.security.NoSuchAlgorithmException;
 public class ResourcePack {
     private final String id, url;
     private String hash;
+    private Boolean showForce;
     private ResourcePackInfo.Builder packBuilder;
 
-    public ResourcePack(String id, String url) {
+    public ResourcePack(String id, String url, Boolean showForce) {
         this.id = id;
         this.url = url;
+        this.showForce = showForce;
 
         refreshPack();
     }
@@ -29,7 +31,9 @@ public class ResourcePack {
 
         this.hash = DatatypeConverter.printHexBinary(digest);
         this.packBuilder = BingResourcePack.instance.server.createResourcePackBuilder(url);
+
         packBuilder.setHash(digest);
+        packBuilder.setShouldForce(showForce);
     }
 
     public void sendPack(Player player) {
