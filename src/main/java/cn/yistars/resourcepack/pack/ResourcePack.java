@@ -1,6 +1,8 @@
 package cn.yistars.resourcepack.pack;
 
 import cn.yistars.resourcepack.BingResourcePack;
+import cn.yistars.resourcepack.config.ConfigManager;
+import cn.yistars.resourcepack.config.LangManager;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.player.ResourcePackInfo;
 import jakarta.xml.bind.DatatypeConverter;
@@ -14,13 +16,14 @@ import java.security.NoSuchAlgorithmException;
 public class ResourcePack {
     private final String id, url;
     private String hash;
-    private Boolean showForce;
+    private Boolean showForce, showActionBar;
     private ResourcePackInfo.Builder packBuilder;
 
-    public ResourcePack(String id, String url, Boolean showForce) {
+    public ResourcePack(String id, String url, Boolean showForce, Boolean showActionBar) {
         this.id = id;
         this.url = url;
         this.showForce = showForce;
+        this.showActionBar = showActionBar;
 
         refreshPack();
     }
@@ -34,10 +37,22 @@ public class ResourcePack {
 
         packBuilder.setHash(digest);
         packBuilder.setShouldForce(showForce);
+
+        // 1.17+ 资源包提示信息
+        if (ConfigManager.lang_config.contains("pack-prompt-" + id)) {
+            packBuilder.setPrompt(LangManager.getLang("pack-prompt-" + id));
+        } else {
+            packBuilder.setPrompt(LangManager.getLang("pack-prompt-default"));
+        }
     }
 
     public void sendPack(Player player) {
         player.sendResourcePackOffer(packBuilder.build());
+
+        // 如果显示 action-bar 则发出提示语句
+        if (showActionBar) {
+            player.sendActionBar(LangManager.getLang("pack-action-bar", id));
+        }
     }
 
     // 获取在线哈希值

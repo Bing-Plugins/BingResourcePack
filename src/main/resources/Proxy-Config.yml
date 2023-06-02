@@ -19,6 +19,7 @@ match-rules:
 resource-packs:
   empty:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/empty/Empty.zip
+    show-action-bar: false
   rank:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/rank/Rank.zip
     force: true

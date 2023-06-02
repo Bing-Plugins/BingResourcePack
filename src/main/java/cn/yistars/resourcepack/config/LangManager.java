@@ -23,8 +23,8 @@ public class LangManager {
         String msg = ConfigManager.lang_config.getString(key);
 
         switch (key) {
-            case "not-authenticated-log":
-                msg = msg.replace("%playerName%", args[0]);
+            case "pack-action-bar":
+                msg = msg.replace("%pack-name%", args[0]);
                 break;
         }
 

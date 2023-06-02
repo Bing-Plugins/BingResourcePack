@@ -2,6 +2,8 @@
 main-get-help: "查看帮助使用 /BingResourcePack help"
 reload-success: "&a成功重载配置文件"
 
+pack-action-bar: "&a服务器向你发送了资源包: %pack-name%"
+
 pack-prompt-default: "服务器向你发送了资源包更新，推荐下载使用"
 pack-prompt-empty: "默认资源包，用于清空现有资源包，避免出现异常材质，推荐下载使用"
 pack-prompt-rank: "通用资源包，包含服务器图标等内容的必要资源，要求下载使用"
