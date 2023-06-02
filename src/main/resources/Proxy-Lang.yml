@@ -21,6 +21,6 @@ pack-name-uhc: "极限生存挑战(UHC)"
 main-command-help: |-
   &e/BingResourcePack help &7- &r查看帮助
   &e/BingResourcePack reload &7- &r重载配置
-  &e/BingResourcePack resend <all/server/pack-name/match-rule/player> &7- &r重新发送资源包
+  &e/BingResourcePack resend <all/server/pack-name/match-rule/player> [value] &7- &r重新发送资源包
   &e/BingResourcePack get &7- &r玩家重新获取资源包
   &e/BingResourcePack info <pack-name> &7- &r查看资源包信息

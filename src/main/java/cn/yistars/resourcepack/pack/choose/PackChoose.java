@@ -1,6 +1,8 @@
-package cn.yistars.resourcepack.pack;
+package cn.yistars.resourcepack.pack.choose;
 
 import cn.yistars.resourcepack.config.ConfigManager;
+import cn.yistars.resourcepack.pack.PackManager;
+import cn.yistars.resourcepack.pack.ResourcePack;
 
 public class PackChoose {
     public static ResourcePack getPack(String serverName) {
