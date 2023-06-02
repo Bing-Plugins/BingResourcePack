@@ -40,9 +40,7 @@ public class ResourcePack {
         player.sendResourcePackOffer(packBuilder.build());
     }
 
-    /*
-    获取在线哈希值
-     */
+    // 获取在线哈希值
     private byte[] getHash() {
         try {
             URL url = new URL(this.url);
