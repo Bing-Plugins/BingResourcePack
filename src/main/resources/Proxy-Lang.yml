@@ -5,3 +5,4 @@ reload-success: "&a成功重载配置文件"
 main-command-help: |-
   &e/BingResourcePack help &7- &r查看帮助
   &e/BingResourcePack reload &7- &r重载配置
+  &e/BingResourcePack resend <all/server/player> &7- &r重新发送资源包
