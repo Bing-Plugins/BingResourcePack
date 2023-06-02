@@ -7,10 +7,10 @@ match-rules:
   lobby:
     pack: rank
   horror-farmer:
-    pack: horrorfarmer
+    pack: horror-farmer
     regex: hf_.*
-  undertensai:
-    pack: undertensai
+  under-tensai:
+    pack: under-tensai
     regex: ut_[^0].*
   uhc:
     pack: uhc
@@ -21,9 +21,10 @@ resource-packs:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/empty/Empty.zip
   rank:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/rank/Rank.zip
-  horrorfarmer:
+    force: true
+  horror-farmer:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/horrorfarmer/HorrorFarmer.zip
-  undertensai:
+  under-tensai:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/undertensai/UTP.zip
   uhc:
     url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/uhc/UHC.zip

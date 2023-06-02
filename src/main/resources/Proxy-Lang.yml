@@ -2,6 +2,20 @@
 main-get-help: "查看帮助使用 /BingResourcePack help"
 reload-success: "&a成功重载配置文件"
 
+pack-prompt-default: "服务器向你发送了资源包更新，推荐下载使用"
+pack-prompt-empty: "默认资源包，用于清空现有资源包，避免出现异常材质，推荐下载使用"
+pack-prompt-rank: "通用资源包，包含服务器图标等内容的必要资源，要求下载使用"
+pack-prompt-under-tensai: "《天灾之下：危险连接》必须使用资源包才可正常游戏，要求下载使用"
+pack-prompt-horror-farmer: "《恐怖种田人》使用资源包可以提升使用体验，显示游戏特定物品的材质，推荐下载使用"
+pack-prompt-uhc: "《极限生存挑战(UHC)》使用资源包可以提升使用体验，显示游戏特定物品的材质，推荐下载使用"
+
+pack-name-default: "服务器资源包"
+pack-name-empty: "清空资源包"
+pack-name-rank: "通用资源包"
+pack-name-under-tensai: "天灾之下：危险连接"
+pack-name-horror-farmer: "恐怖种田人"
+pack-name-uhc: "极限生存挑战(UHC)"
+
 main-command-help: |-
   &e/BingResourcePack help &7- &r查看帮助
   &e/BingResourcePack reload &7- &r重载配置
