@@ -1,5 +1,5 @@
 # 通用 Universal
-main-get-help: "查看帮助使用 /BingPremium help"
+main-get-help: "查看帮助使用 /BingResourcePack help"
 reload-success: "&a成功重载配置文件"
 
 main-command-help: |-
