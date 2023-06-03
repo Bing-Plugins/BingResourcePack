@@ -2,7 +2,7 @@
 main-get-help: "查看帮助使用 /BingResourcePack help"
 reload-success: "&a成功重载配置文件"
 
-pack-action-bar: "&a服务器向你发送了资源包: %pack-name%"
+pack-action-bar: "&a服务器向你发送了资源包: &e%pack-name%"
 
 pack-prompt-default: "服务器向你发送了资源包更新，推荐下载使用"
 pack-prompt-empty: "默认资源包，用于清空现有资源包，避免出现异常材质，推荐下载使用"
@@ -26,4 +26,9 @@ main-command-help: |-
   &e/BingResourcePack info <pack-name> &7- &r查看资源包信息
 
 need-parameter: "&c缺少参数"
-need-permission: "&c无权操作"
+unknown-parameter: "&c未知参数: %parameter%"
+
+success-resend-all: "&a成功向所有玩家发送资源包"
+success-resend-server: "&a成功向处在 %server-name% 服务器的玩家发送资源包"
+success-resend-match-rule: "&a成功向适用匹配规则 %match-rule% 的玩家发送资源包"
+success-resend-player: "&a成功向玩家 %player% 发送资源包"

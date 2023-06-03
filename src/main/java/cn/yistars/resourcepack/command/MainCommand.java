@@ -37,8 +37,6 @@ public class MainCommand implements SimpleCommand {
             return;
         }
 
-
-
         switch (args[0].toLowerCase()) {
             case "reload":
                 if (!source.hasPermission("BingResourcePack.admin")) return;
@@ -64,24 +62,38 @@ public class MainCommand implements SimpleCommand {
                     source.sendMessage(LangManager.getLang("need-parameter"));
                     return;
                 }
+                if (!args[1].equalsIgnoreCase("all") && args.length < 3) {
+                    source.sendMessage(LangManager.getLang("need-parameter"));
+                    return;
+                }
 
                 switch (args[1].toLowerCase()) {
                     case "all":
                         PackManager.resendPack();
+                        source.sendMessage(LangManager.getLang("success-resend-all"));
                         break;
                     case "server":
                         PackManager.resendPack(ChooseType.SERVER, args[2]);
+                        source.sendMessage(LangManager.getLang("success-resend-server", args[2]));
                         break;
                     case "match-rule": case "match_rule":
                         PackManager.resendPack(ChooseType.MATCH_RULE, args[2]);
+                        source.sendMessage(LangManager.getLang("success-resend-match-rule", args[2]));
                         break;
                     case "player":
                         PackManager.resendPack(ChooseType.PLAYER, args[2]);
+                        source.sendMessage(LangManager.getLang("success-resend-player", args[2]));
                         break;
+                    default:
+                        source.sendMessage(LangManager.getLang("unknown-parameter", args[1]));
+                        return;
                 }
                 break;
             case "info":
                 if (!source.hasPermission("BingResourcePack.admin")) return;
+                break;
+            default:
+                source.sendMessage(LangManager.getLang("unknown-command", args[0]));
                 break;
         }
     }

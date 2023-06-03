@@ -26,6 +26,18 @@ public class LangManager {
             case "pack-action-bar":
                 msg = msg.replace("%pack-name%", args[0]);
                 break;
+            case "unknown-parameter":
+                msg = msg.replace("%parameter%", args[0]);
+                break;
+            case "success-resend-server":
+                msg = msg.replace("%server-name%", args[0]);
+                break;
+            case "success-resend-match-rule":
+                msg = msg.replace("%match-rule%", args[0]);
+                break;
+            case "success-resend-player":
+                msg = msg.replace("%player%", args[0]);
+                break;
         }
 
         msg = ChatColor.translateAlternateColorCodes('&', msg);

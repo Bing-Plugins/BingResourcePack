@@ -49,7 +49,7 @@ public class PackManager {
                     pack.sendPack(player);
                 }
                 break;
-            case RULE:
+            case MATCH_RULE:
                 for (Player player : BingResourcePack.instance.server.getAllPlayers()) {
                     if (!player.getCurrentServer().isPresent()) continue;
                     ResourcePack pack = PackChoose.getPack(player.getCurrentServer().get().getServerInfo().getName());
