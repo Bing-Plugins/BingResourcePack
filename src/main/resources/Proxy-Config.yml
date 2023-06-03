@@ -22,7 +22,6 @@ resource-packs:
     show-action-bar: false
   rank:
     url: https://src.yistars.net/resource-packs/Rank.zip
-    force: true
   horror-farmer:
     url: https://src.yistars.net/resource-packs/HorrorFarmer.zip
   under-tensai:
