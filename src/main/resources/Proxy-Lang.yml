@@ -29,7 +29,10 @@ pack-info: |-
   是否显示 Action Bar: &e%is-show-action-bar%
   
 
-unknown-
+true: "&a是"
+false: "&c否"
+
+unknown-pack: "&c未知的资源包名称: %pack-name%"
 
 main-command-help: |-
   &e/BingResourcePack help &7- &r查看帮助

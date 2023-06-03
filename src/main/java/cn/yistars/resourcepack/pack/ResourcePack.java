@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class ResourcePack {
     private final String id, url;
     private String hash;
-    private Boolean showForce, showActionBar;
+    private final Boolean showForce, showActionBar;
     private ResourcePackInfo.Builder packBuilder;
 
     public ResourcePack(String id, String url, Boolean showForce, Boolean showActionBar) {
@@ -51,7 +51,7 @@ public class ResourcePack {
 
         // 如果显示 action-bar 则发出提示语句
         if (showActionBar) {
-            player.sendActionBar(LangManager.getLang("pack-action-bar", id));
+            player.sendActionBar(LangManager.getLang("pack-action-bar", getName()));
         }
     }
 
@@ -84,5 +84,21 @@ public class ResourcePack {
 
     public String getHashString() {
         return hash;
+    }
+
+    public Boolean getShowForce() {
+        return showForce;
+    }
+
+    public Boolean getShowActionBar() {
+        return showActionBar;
+    }
+
+    public String getName() {
+        if (ConfigManager.lang_config.contains("pack-name-" + id)) {
+            return LangManager.getString("pack-name-" + id);
+        } else {
+            return LangManager.getString("pack-name-default");
+        }
     }
 }

@@ -100,8 +100,24 @@ public class MainCommand implements SimpleCommand {
                 ResourcePack pack = PackManager.packs.get(args[1]);
 
                 if (pack == null) {
-
+                    source.sendMessage(LangManager.getLang("unknown-pack", args[1]));
+                    return;
                 }
+
+                String msg = LangManager.getString(
+                        "pack-info",
+                        pack.getId(),
+                        pack.getName(),
+                        pack.getUrl(),
+                        pack.getHashString(),
+                        pack.getShowForce() ? LangManager.getString("true") : LangManager.getString("false"),
+                        pack.getShowActionBar() ? LangManager.getString("true") : LangManager.getString("false")
+                );
+
+                for (String line : msg.split("\n")) {
+                    source.sendMessage(Component.text(line));
+                }
+
                 break;
             default:
                 source.sendMessage(LangManager.getLang("unknown-command", args[0]));

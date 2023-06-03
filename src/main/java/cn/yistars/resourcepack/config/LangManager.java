@@ -23,7 +23,7 @@ public class LangManager {
         String msg = ConfigManager.lang_config.getString(key);
 
         switch (key) {
-            case "pack-action-bar":
+            case "pack-action-bar": case "unknown-pack":
                 msg = msg.replace("%pack-name%", args[0]);
                 break;
             case "unknown-parameter":
@@ -37,6 +37,14 @@ public class LangManager {
                 break;
             case "success-resend-player":
                 msg = msg.replace("%player%", args[0]);
+                break;
+            case "pack-info":
+                msg = msg.replace("%pack-id%", args[0]);
+                msg = msg.replace("%pack-name%", args[1]);
+                msg = msg.replace("%pack-url%", args[2]);
+                msg = msg.replace("%pack-hash%", args[3]);
+                msg = msg.replace("%is-force%", args[4]);
+                msg = msg.replace("%is-show-action-bar%", args[5]);
                 break;
         }
 
