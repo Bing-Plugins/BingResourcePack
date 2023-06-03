@@ -45,6 +45,7 @@ public class BingResourcePack {
 
         CommandMeta mainCommandMeta = commandManager.metaBuilder("bingresourcepack")
                 .plugin(this)
+                .aliases("bsp")
                 .build();
 
         SimpleCommand mainCommand = new MainCommand();

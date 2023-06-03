@@ -5,9 +5,13 @@ import cn.yistars.resourcepack.config.ConfigManager;
 import cn.yistars.resourcepack.config.LangManager;
 import cn.yistars.resourcepack.config.StringUtil;
 import cn.yistars.resourcepack.pack.PackManager;
+import cn.yistars.resourcepack.pack.ResourcePack;
+import cn.yistars.resourcepack.pack.choose.ChooseType;
+import cn.yistars.resourcepack.pack.choose.PackChoose;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.plugin.PluginContainer;
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.text.Component;
 
@@ -21,7 +25,6 @@ public class MainCommand implements SimpleCommand {
     @Override
     public void execute(final Invocation invocation) {
         CommandSource source = invocation.source();
-        // Get the arguments after the command alias
         String[] args = invocation.arguments();
 
         if (args.length == 0) {
@@ -34,19 +37,51 @@ public class MainCommand implements SimpleCommand {
             return;
         }
 
-        if (!source.hasPermission("BingResourcePack.admin")) {
-            return;
-        }
+
 
         switch (args[0].toLowerCase()) {
             case "reload":
+                if (!source.hasPermission("BingResourcePack.admin")) return;
                 ConfigManager.reloadConfig();
                 source.sendMessage(LangManager.getLang("reload-success"));
                 break;
             case "help":
+                if (!source.hasPermission("BingResourcePack.admin")) return;
                 for (String msg : LangManager.getString("main-command-help").split("\n")) {
                     source.sendMessage(Component.text(msg));
                 }
+                break;
+            case "get":
+                if (!(source instanceof Player)) return;
+
+                Player player = (Player) source;
+
+                PackManager.resendPack(ChooseType.PLAYER, player.getUsername());
+                break;
+            case "resend":
+                if (!source.hasPermission("BingResourcePack.admin")) return;
+                if (args.length < 2) {
+                    source.sendMessage(LangManager.getLang("need-parameter"));
+                    return;
+                }
+
+                switch (args[1].toLowerCase()) {
+                    case "all":
+                        PackManager.resendPack();
+                        break;
+                    case "server":
+                        PackManager.resendPack(ChooseType.SERVER, args[2]);
+                        break;
+                    case "match-rule": case "match_rule":
+                        PackManager.resendPack(ChooseType.MATCH_RULE, args[2]);
+                        break;
+                    case "player":
+                        PackManager.resendPack(ChooseType.PLAYER, args[2]);
+                        break;
+                }
+                break;
+            case "info":
+                if (!source.hasPermission("BingResourcePack.admin")) return;
                 break;
         }
     }
@@ -74,7 +109,6 @@ public class MainCommand implements SimpleCommand {
                         break;
                     case "resend":
                         String[] resendType = new String[]{"all", "server", "match-rule", "player"};
-                        // 通过开头判断
                         StringUtil.copyPartialMatches(args[1], Arrays.asList(resendType), completions);
                         break;
                     default:
@@ -93,7 +127,6 @@ public class MainCommand implements SimpleCommand {
                     StringUtil.copyPartialMatches(args[2], resendParameter, completions);
                 }
         }
-
 
         // 排序
         Collections.sort(completions);

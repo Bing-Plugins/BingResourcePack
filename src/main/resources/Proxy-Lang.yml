@@ -24,3 +24,6 @@ main-command-help: |-
   &e/BingResourcePack resend <all/server/match-rule/player> [value] &7- &r重新发送资源包
   &e/BingResourcePack get &7- &r玩家重新获取资源包
   &e/BingResourcePack info <pack-name> &7- &r查看资源包信息
+
+need-parameter: "&c缺少参数"
+need-permission: "&c无权操作"
