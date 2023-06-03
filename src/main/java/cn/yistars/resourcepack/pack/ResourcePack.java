@@ -5,7 +5,7 @@ import cn.yistars.resourcepack.config.ConfigManager;
 import cn.yistars.resourcepack.config.LangManager;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.player.ResourcePackInfo;
-import jakarta.xml.bind.DatatypeConverter;
+import org.apache.commons.codec.binary.Hex;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +32,7 @@ public class ResourcePack {
     public void refreshPack() {
         byte[] digest = getHash();
 
-        this.hash = DatatypeConverter.printHexBinary(digest);
+        this.hash = Hex.encodeHexString(digest);
         this.packBuilder = BingResourcePack.instance.server.createResourcePackBuilder(url);
 
         packBuilder.setHash(digest);
