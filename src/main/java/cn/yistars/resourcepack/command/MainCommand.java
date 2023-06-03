@@ -193,9 +193,14 @@ public class MainCommand implements SimpleCommand {
                             resendParameter.addAll(ConfigManager.config.getSection("match-rules").getKeys());
                             break;
                         case "player":
-                            for (Player player : BingResourcePack.instance.server.getAllPlayers()) {
-                                resendParameter.add(player.getUsername());
+                            if (BingResourcePack.instance.hasRedis) {
+                                resendParameter.addAll(RedisAddon.getAllPlayers());
+                            } else {
+                                for (Player player : BingResourcePack.instance.server.getAllPlayers()) {
+                                    resendParameter.add(player.getUsername());
+                                }
                             }
+
                             break;
                         default:
                             return CompletableFuture.completedFuture(new ArrayList<>());

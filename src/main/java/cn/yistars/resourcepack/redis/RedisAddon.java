@@ -3,7 +3,9 @@ package cn.yistars.resourcepack.redis;
 import cn.yistars.resourcepack.pack.choose.ChooseType;
 import com.imaginarycode.minecraft.redisbungee.AbstractRedisBungeeAPI;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.UUID;
 
 public class RedisAddon {
     public static AbstractRedisBungeeAPI redisAPI;
@@ -30,5 +32,16 @@ public class RedisAddon {
 
             redisAPI.sendChannelMessage(RESEND_CHANNEL, sendMsg);
         }
+    }
+
+    public static ArrayList<String> getAllPlayers() {
+
+        ArrayList<String> playerNames = new ArrayList<>();
+
+        for (UUID uuid : redisAPI.getPlayersOnline()) {
+            playerNames.add(redisAPI.getNameFromUuid(uuid));
+        }
+
+        return playerNames;
     }
 }
