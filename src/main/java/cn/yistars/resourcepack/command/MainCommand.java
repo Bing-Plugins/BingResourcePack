@@ -4,9 +4,11 @@ import cn.yistars.resourcepack.BingResourcePack;
 import cn.yistars.resourcepack.config.ConfigManager;
 import cn.yistars.resourcepack.config.LangManager;
 import cn.yistars.resourcepack.config.StringUtil;
+import cn.yistars.resourcepack.pack.PackManager;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.plugin.PluginContainer;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.text.Component;
 
 import java.util.ArrayList;
@@ -58,10 +60,40 @@ public class MainCommand implements SimpleCommand {
         }
 
         final List<String> completions = new ArrayList<>();
-        String[] Commands = new String[]{"help", "reload"};
 
-        // 通过开头判断
-        StringUtil.copyPartialMatches(args[0], Arrays.asList(Commands), completions);
+        switch (args.length) {
+            case 1:
+                String[] Commands = new String[]{"help", "reload", "get", "resend", "info"};
+                // 通过开头判断
+                StringUtil.copyPartialMatches(args[0], Arrays.asList(Commands), completions);
+            case 2:
+                switch (args[0]) {
+                    case "info":
+                        ArrayList<String> packNames = new ArrayList<>(PackManager.packs.keySet());
+                        StringUtil.copyPartialMatches(args[1], packNames, completions);
+                        break;
+                    case "resend":
+                        String[] resendType = new String[]{"all", "server", "match-rule", "player"};
+                        // 通过开头判断
+                        StringUtil.copyPartialMatches(args[1], Arrays.asList(resendType), completions);
+                        break;
+                    default:
+                        return CompletableFuture.completedFuture(new ArrayList<>());
+                }
+            case 3:
+                if (args[0].equals("resend")) {
+                    ArrayList<String> resendParameter = new ArrayList<>();
+                    resendParameter.add("all");
+                    resendParameter.addAll(PackManager.packs.keySet());
+
+                    for (RegisteredServer server : BingResourcePack.instance.server.getAllServers()) {
+                        resendParameter.add(server.getServerInfo().getName());
+                    }
+
+                    StringUtil.copyPartialMatches(args[2], resendParameter, completions);
+                }
+        }
+
 
         // 排序
         Collections.sort(completions);

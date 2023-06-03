@@ -35,6 +35,7 @@ public class PackManager {
         }
     }
 
+    // 根据规则重发资源包
     public static void resendPack(ChooseType type, String value) {
         switch (type) {
             case SERVER:
