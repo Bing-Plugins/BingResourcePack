@@ -22,7 +22,7 @@ public class RedisAddon {
         redisAPI.sendChannelMessage(RELOAD_CHANNEL, "reload");
     }
 
-    public static void sendSendServer(ChooseType chooseType, String... value) {
+    public static void sendResend(ChooseType chooseType, String... value) {
         if (Objects.requireNonNull(chooseType) == ChooseType.ALL) {
             redisAPI.sendChannelMessage(RESEND_CHANNEL, chooseType.toString());
         } else {

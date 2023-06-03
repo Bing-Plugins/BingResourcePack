@@ -7,6 +7,7 @@ import cn.yistars.resourcepack.config.StringUtil;
 import cn.yistars.resourcepack.pack.PackManager;
 import cn.yistars.resourcepack.pack.ResourcePack;
 import cn.yistars.resourcepack.pack.choose.ChooseType;
+import cn.yistars.resourcepack.redis.RedisAddon;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.plugin.PluginContainer;
@@ -39,7 +40,11 @@ public class MainCommand implements SimpleCommand {
         switch (args[0].toLowerCase()) {
             case "reload":
                 if (!source.hasPermission("BingResourcePack.admin")) return;
-                ConfigManager.reloadConfig();
+                if (BingResourcePack.instance.hasRedis) {
+                    RedisAddon.sendReload();
+                } else {
+                    ConfigManager.reloadConfig();
+                }
                 source.sendMessage(LangManager.getLang("reload-success"));
                 break;
             case "help":
@@ -68,19 +73,39 @@ public class MainCommand implements SimpleCommand {
 
                 switch (args[1].toLowerCase()) {
                     case "all":
-                        PackManager.resendPack();
+                        if (BingResourcePack.instance.hasRedis) {
+                            RedisAddon.sendResend(ChooseType.ALL);
+                        } else {
+                            PackManager.resendPack();
+                        }
+
                         source.sendMessage(LangManager.getLang("success-resend-all"));
                         break;
                     case "server":
-                        PackManager.resendPack(ChooseType.SERVER, args[2]);
+                        if (BingResourcePack.instance.hasRedis) {
+                            RedisAddon.sendResend(ChooseType.SERVER, args[2]);
+                        } else {
+                            PackManager.resendPack(ChooseType.SERVER, args[2]);
+                        }
+
                         source.sendMessage(LangManager.getLang("success-resend-server", args[2]));
                         break;
                     case "match-rule": case "match_rule":
-                        PackManager.resendPack(ChooseType.MATCH_RULE, args[2]);
+                        if (BingResourcePack.instance.hasRedis) {
+                            RedisAddon.sendResend(ChooseType.MATCH_RULE, args[2]);
+                        } else {
+                            PackManager.resendPack(ChooseType.MATCH_RULE, args[2]);
+                        }
+
                         source.sendMessage(LangManager.getLang("success-resend-match-rule", args[2]));
                         break;
                     case "player":
-                        PackManager.resendPack(ChooseType.PLAYER, args[2]);
+                        if (BingResourcePack.instance.hasRedis) {
+                            RedisAddon.sendResend(ChooseType.PLAYER, args[2]);
+                        } else {
+                            PackManager.resendPack(ChooseType.PLAYER, args[2]);
+                        }
+
                         source.sendMessage(LangManager.getLang("success-resend-player", args[2]));
                         break;
                     default:

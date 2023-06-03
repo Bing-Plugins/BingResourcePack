@@ -4,6 +4,7 @@ import cn.yistars.resourcepack.BingResourcePack;
 import cn.yistars.resourcepack.config.ConfigManager;
 import cn.yistars.resourcepack.pack.choose.ChooseType;
 import cn.yistars.resourcepack.pack.choose.PackChoose;
+import cn.yistars.resourcepack.redis.RedisAddon;
 import com.velocitypowered.api.proxy.Player;
 
 import java.util.HashMap;

@@ -2,7 +2,9 @@ package cn.yistars.resourcepack;
 
 import cn.yistars.resourcepack.command.MainCommand;
 import cn.yistars.resourcepack.config.ConfigManager;
+import cn.yistars.resourcepack.listener.RedisSubMsgListener;
 import cn.yistars.resourcepack.listener.ServerSwitchListener;
+import cn.yistars.resourcepack.redis.RedisAddon;
 import com.google.inject.Inject;
 import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.command.CommandMeta;
@@ -23,6 +25,7 @@ public class BingResourcePack {
     public final ProxyServer server;
     public final Logger logger;
     public final Path dataDirectory;
+    public Boolean hasRedis;
 
     @Inject
     public BingResourcePack(ProxyServer server, Logger logger, @DataDirectory Path dataDirectory) {
@@ -39,7 +42,14 @@ public class BingResourcePack {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
+        hasRedis = server.getPluginManager().getPlugin("redisbungee").isPresent();
+
+        if (hasRedis) {
+            RedisAddon.initRedis();
+        }
+
         server.getEventManager().register(this, new ServerSwitchListener());
+        server.getEventManager().register(this, new RedisSubMsgListener());
 
         CommandManager commandManager = server.getCommandManager();
 
