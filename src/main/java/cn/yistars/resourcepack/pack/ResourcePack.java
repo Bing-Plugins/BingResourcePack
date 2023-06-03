@@ -77,4 +77,12 @@ public class ResourcePack {
     public String getId() {
         return id;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getHashString() {
+        return hash;
+    }
 }

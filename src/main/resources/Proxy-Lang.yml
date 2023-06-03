@@ -18,6 +18,19 @@ pack-name-under-tensai: "天灾之下：危险连接"
 pack-name-horror-farmer: "恐怖种田人"
 pack-name-uhc: "极限生存挑战(UHC)"
 
+pack-info: |-
+  
+  &e&l%pack-id% 资源包信息
+  
+  资源包名称: &e%pack-name%
+  资源包路径: &e%pack-url%
+  资源包哈希: &e%pack-hash%
+  是否强制使用: &e%is-force%
+  是否显示 Action Bar: &e%is-show-action-bar%
+  
+
+unknown-
+
 main-command-help: |-
   &e/BingResourcePack help &7- &r查看帮助
   &e/BingResourcePack reload &7- &r重载配置

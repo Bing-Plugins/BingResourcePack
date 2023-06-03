@@ -91,6 +91,17 @@ public class MainCommand implements SimpleCommand {
                 break;
             case "info":
                 if (!source.hasPermission("BingResourcePack.admin")) return;
+
+                if (args.length < 2) {
+                    source.sendMessage(LangManager.getLang("need-parameter"));
+                    return;
+                }
+
+                ResourcePack pack = PackManager.packs.get(args[1]);
+
+                if (pack == null) {
+
+                }
                 break;
             default:
                 source.sendMessage(LangManager.getLang("unknown-command", args[0]));
