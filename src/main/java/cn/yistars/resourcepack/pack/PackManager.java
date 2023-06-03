@@ -54,7 +54,7 @@ public class PackManager {
                     if (!player.getCurrentServer().isPresent()) continue;
                     ResourcePack pack = PackChoose.getPack(player.getCurrentServer().get().getServerInfo().getName());
                     if (pack == null) continue;
-                    if (pack.getId().equals(value)) continue;
+                    if (!pack.getId().equals(value)) continue;
 
                     pack.sendPack(player);
                 }
