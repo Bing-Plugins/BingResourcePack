@@ -157,11 +157,23 @@ public class MainCommand implements SimpleCommand {
             case 3:
                 if (args[0].equals("resend")) {
                     ArrayList<String> resendParameter = new ArrayList<>();
-                    resendParameter.add("all");
-                    resendParameter.addAll(PackManager.packs.keySet());
 
-                    for (RegisteredServer server : BingResourcePack.instance.server.getAllServers()) {
-                        resendParameter.add(server.getServerInfo().getName());
+                    switch (args[1]) {
+                        case "server":
+                            for (RegisteredServer server : BingResourcePack.instance.server.getAllServers()) {
+                                resendParameter.add(server.getServerInfo().getName());
+                            }
+                            break;
+                        case "match-rule":
+                            resendParameter.addAll(ConfigManager.config.getSection("match-rules").getKeys());
+                            break;
+                        case "player":
+                            for (Player player : BingResourcePack.instance.server.getAllPlayers()) {
+                                resendParameter.add(player.getUsername());
+                            }
+                            break;
+                        default:
+                            return CompletableFuture.completedFuture(new ArrayList<>());
                     }
 
                     StringUtil.copyPartialMatches(args[2], resendParameter, completions);
