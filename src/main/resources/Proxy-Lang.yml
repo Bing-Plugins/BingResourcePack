@@ -27,7 +27,6 @@ pack-info: |-
   资源包哈希: &e%pack-hash%
   是否强制使用: &e%is-force%
   是否显示 Action Bar: &e%is-show-action-bar%
-  
 
 true: "&a是"
 false: "&c否"

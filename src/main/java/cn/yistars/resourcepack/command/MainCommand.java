@@ -7,7 +7,6 @@ import cn.yistars.resourcepack.config.StringUtil;
 import cn.yistars.resourcepack.pack.PackManager;
 import cn.yistars.resourcepack.pack.ResourcePack;
 import cn.yistars.resourcepack.pack.choose.ChooseType;
-import cn.yistars.resourcepack.pack.choose.PackChoose;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.plugin.PluginContainer;
@@ -140,6 +139,7 @@ public class MainCommand implements SimpleCommand {
                 String[] Commands = new String[]{"help", "reload", "get", "resend", "info"};
                 // 通过开头判断
                 StringUtil.copyPartialMatches(args[0], Arrays.asList(Commands), completions);
+                break;
             case 2:
                 switch (args[0]) {
                     case "info":
@@ -153,6 +153,7 @@ public class MainCommand implements SimpleCommand {
                     default:
                         return CompletableFuture.completedFuture(new ArrayList<>());
                 }
+                break;
             case 3:
                 if (args[0].equals("resend")) {
                     ArrayList<String> resendParameter = new ArrayList<>();
