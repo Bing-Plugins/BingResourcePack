@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class RedisAddon {
     public static AbstractRedisBungeeAPI redisAPI;
-    private static final String DELIMITER = "§&§";
-    private static final String RESEND_CHANNEL = "bing-resource-pack-resend";
-    private static final String RELOAD_CHANNEL = "bing-resource-pack-reload";
+    public static final String DELIMITER = "§&§";
+    public static final String RESEND_CHANNEL = "bing-resource-pack-resend";
+    public static final String RELOAD_CHANNEL = "bing-resource-pack-reload";
 
     public static void initRedis() {
         redisAPI = AbstractRedisBungeeAPI.getAbstractRedisBungeeAPI();
@@ -23,9 +23,8 @@ public class RedisAddon {
     }
 
     public static void sendSendServer(ChooseType chooseType, String... value) {
-
         if (Objects.requireNonNull(chooseType) == ChooseType.ALL) {
-            redisAPI.sendChannelMessage(RESEND_CHANNEL, chooseType + DELIMITER);
+            redisAPI.sendChannelMessage(RESEND_CHANNEL, chooseType.toString());
         } else {
             String sendMsg = chooseType + DELIMITER + value[0];
 
