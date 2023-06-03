@@ -18,15 +18,15 @@ match-rules:
 # 资源包
 resource-packs:
   empty:
-    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/empty/Empty.zip
+    url: https://src.yistars.net/resource-packs/Empty.zip
     show-action-bar: false
   rank:
-    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/rank/Rank.zip
+    url: https://src.yistars.net/resource-packs/Rank.zip
     force: true
   horror-farmer:
-    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/horrorfarmer/HorrorFarmer.zip
+    url: https://src.yistars.net/resource-packs/HorrorFarmer.zip
   under-tensai:
-    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/undertensai/UTP.zip
+    url: https://src.yistars.net/resource-packs/UTP.zip
     force: true
   uhc:
-    url: https://io.ivampiresp.com/d/BingTang-Server/resourcepacks/uhc/UHC.zip
+    url: https://src.yistars.net/resource-packs/UHC.zip
