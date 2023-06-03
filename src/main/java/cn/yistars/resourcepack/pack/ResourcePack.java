@@ -73,4 +73,8 @@ public class ResourcePack {
             throw new RuntimeException(e);
         }
     }
+
+    public String getId() {
+        return id;
+    }
 }

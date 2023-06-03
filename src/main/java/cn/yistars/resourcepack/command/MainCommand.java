@@ -37,15 +37,15 @@ public class MainCommand implements SimpleCommand {
         }
 
         switch (args[0].toLowerCase()) {
-            case "reload" -> {
+            case "reload":
                 ConfigManager.reloadConfig();
                 source.sendMessage(LangManager.getLang("reload-success"));
-            }
-            case "help" -> {
+                break;
+            case "help":
                 for (String msg : LangManager.getString("main-command-help").split("\n")) {
                     source.sendMessage(Component.text(msg));
                 }
-            }
+                break;
         }
     }
 
