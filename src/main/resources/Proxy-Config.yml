@@ -1,7 +1,7 @@
 # 进入服务器时的发送延迟
 global-send-delay: 1
 # 空资源包名称
-empty-resource-pack-name: empty
+empty-resource-pack-name: rank
 # 匹配规则
 match-rules:
   lobby:

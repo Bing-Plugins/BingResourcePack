@@ -58,6 +58,13 @@
             <artifactId>commons-codec</artifactId>
             <version>1.15</version>
         </dependency>
+        <!-- Redis -->
+        <dependency>
+            <groupId>com.github.proxiodev.redisbungee</groupId>
+            <artifactId>RedisBungee-Velocity</artifactId>
+            <version>0.10.1</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
