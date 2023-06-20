@@ -3,15 +3,14 @@ package cn.yistars.resourcepack.redis;
 import cn.yistars.resourcepack.pack.choose.ChooseType;
 import com.imaginarycode.minecraft.redisbungee.AbstractRedisBungeeAPI;
 
-import java.util.ArrayList;
 import java.util.Objects;
-import java.util.UUID;
 
 public class RedisAddon {
     public static AbstractRedisBungeeAPI redisAPI;
     public static final String DELIMITER = "§&§";
     public static final String RESEND_CHANNEL = "bing-resource-pack-resend";
     public static final String RELOAD_CHANNEL = "bing-resource-pack-reload";
+    public static final String HASH_CHANNEL = "bing-resource-pack-hash";
 
     public static void initRedis() {
         redisAPI = AbstractRedisBungeeAPI.getAbstractRedisBungeeAPI();
@@ -34,14 +33,9 @@ public class RedisAddon {
         }
     }
 
-    public static ArrayList<String> getAllPlayers() {
+    public static void sendPackHash(String packURL, String packHash) {
+        String sendMsg = packURL + DELIMITER + packHash;
 
-        ArrayList<String> playerNames = new ArrayList<>();
-
-        for (UUID uuid : redisAPI.getPlayersOnline()) {
-            playerNames.add(redisAPI.getNameFromUuid(uuid));
-        }
-
-        return playerNames;
+        redisAPI.sendChannelMessage(HASH_CHANNEL, sendMsg);
     }
 }

@@ -60,6 +60,15 @@ public class MainCommand implements SimpleCommand {
 
                 PackManager.resendPack(ChooseType.PLAYER, player.getUsername());
                 break;
+            case "hash":
+                if (!source.hasPermission("BingResourcePack.admin")) return;
+
+                if (args.length == 1) {
+                    // TODO 重新获取所有的哈希值
+                } else {
+                    // TODO 重新获取指定的哈希值
+                }
+                break;
             case "resend":
                 if (!source.hasPermission("BingResourcePack.admin")) return;
                 if (args.length < 2) {
@@ -194,7 +203,7 @@ public class MainCommand implements SimpleCommand {
                             break;
                         case "player":
                             if (BingResourcePack.instance.hasRedis) {
-                                resendParameter.addAll(RedisAddon.getAllPlayers());
+                                resendParameter.addAll(RedisAddon.redisAPI.getHumanPlayersOnline());
                             } else {
                                 for (Player player : BingResourcePack.instance.server.getAllPlayers()) {
                                     resendParameter.add(player.getUsername());
