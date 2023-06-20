@@ -30,6 +30,7 @@ public class RedisSubMsgListener {
                 for (ResourcePack pack : PackManager.packs.values()) {
                     if (!pack.getUrl().equals(args[0])) continue;
 
+                    pack.setHash(args[1]);
                 }
         }
     }
