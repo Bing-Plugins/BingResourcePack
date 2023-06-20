@@ -101,4 +101,18 @@ public class ResourcePack {
             return LangManager.getString("pack-name-default");
         }
     }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+
+        // 将 hash 字符串转换为字节数组
+        byte[] digest = new byte[hash.length() / 2];
+        for (int i = 0; i < digest.length; i++) {
+            String byteString = hash.substring(i * 2, i * 2 + 2);
+            int byteValue = Integer.parseInt(byteString, 16);
+            digest[i] = (byte) byteValue;
+        }
+
+        this.packBuilder.setHash(digest);
+    }
 }

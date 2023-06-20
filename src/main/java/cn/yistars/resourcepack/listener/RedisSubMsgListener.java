@@ -2,6 +2,7 @@ package cn.yistars.resourcepack.listener;
 
 import cn.yistars.resourcepack.config.ConfigManager;
 import cn.yistars.resourcepack.pack.PackManager;
+import cn.yistars.resourcepack.pack.ResourcePack;
 import cn.yistars.resourcepack.pack.choose.ChooseType;
 import cn.yistars.resourcepack.redis.RedisAddon;
 import com.imaginarycode.minecraft.redisbungee.events.PubSubMessageEvent;
@@ -25,6 +26,11 @@ public class RedisSubMsgListener {
                     PackManager.resendPack(chooseType, args[1]);
                 }
                 break;
+            case RedisAddon.HASH_CHANNEL:
+                for (ResourcePack pack : PackManager.packs.values()) {
+                    if (!pack.getUrl().equals(args[0])) continue;
+
+                }
         }
     }
 }
