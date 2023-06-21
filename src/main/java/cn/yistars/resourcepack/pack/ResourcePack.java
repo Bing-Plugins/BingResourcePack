@@ -78,6 +78,28 @@ public class ResourcePack {
         }
     }
 
+    public void setHash(String hash) {
+        this.hash = hash;
+
+        // 将 hash 字符串转换为字节数组
+        byte[] digest = new byte[hash.length() / 2];
+        for (int i = 0; i < digest.length; i++) {
+            String byteString = hash.substring(i * 2, i * 2 + 2);
+            int byteValue = Integer.parseInt(byteString, 16);
+            digest[i] = (byte) byteValue;
+        }
+
+        this.packBuilder.setHash(digest);
+    }
+
+    public String getName() {
+        if (ConfigManager.lang_config.contains("pack-name-" + id)) {
+            return LangManager.getString("pack-name-" + id);
+        } else {
+            return LangManager.getString("pack-name-default");
+        }
+    }
+
     public String getId() {
         return id;
     }
@@ -98,25 +120,7 @@ public class ResourcePack {
         return showActionBar;
     }
 
-    public String getName() {
-        if (ConfigManager.lang_config.contains("pack-name-" + id)) {
-            return LangManager.getString("pack-name-" + id);
-        } else {
-            return LangManager.getString("pack-name-default");
-        }
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-
-        // 将 hash 字符串转换为字节数组
-        byte[] digest = new byte[hash.length() / 2];
-        for (int i = 0; i < digest.length; i++) {
-            String byteString = hash.substring(i * 2, i * 2 + 2);
-            int byteValue = Integer.parseInt(byteString, 16);
-            digest[i] = (byte) byteValue;
-        }
-
-        this.packBuilder.setHash(digest);
+    public Boolean getUseHash() {
+        return useHash;
     }
 }
