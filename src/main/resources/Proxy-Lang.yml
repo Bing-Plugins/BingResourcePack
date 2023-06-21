@@ -46,3 +46,7 @@ success-resend-all: "&a成功向所有玩家发送资源包"
 success-resend-server: "&a成功向处在 %server-name% 服务器的玩家发送资源包"
 success-resend-match-rule: "&a成功向适用匹配规则 %match-rule% 的玩家发送资源包"
 success-resend-player: "&a成功向玩家 %player% 发送资源包"
+
+success-refresh-hash-all: "&a成功刷新所有资源包哈希值"
+success-refresh-hash: "&a成功刷新资源包 %pack-name% 的哈希值"
+pack-not-use-hash: "&c资源包 %pack-name% 未使用哈希值"

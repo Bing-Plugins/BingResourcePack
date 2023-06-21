@@ -64,9 +64,22 @@ public class MainCommand implements SimpleCommand {
                 if (!source.hasPermission("BingResourcePack.admin")) return;
 
                 if (args.length == 1) {
-                    // TODO 重新获取所有的哈希值
+                    // 重新获取所有的哈希值
+                    PackManager.refreshHash();
+                    source.sendMessage(LangManager.getLang("success-refresh-hash-all"));
                 } else {
-                    // TODO 重新获取指定的哈希值
+                    // 重新获取指定的哈希值
+                    ResourcePack pack = PackManager.packs.get(args[1]);
+                    if (pack == null) {
+                        source.sendMessage(LangManager.getLang("unknown-pack", args[1]));
+                        return;
+                    }
+                    if (!pack.getUseHash()) {
+                        source.sendMessage(LangManager.getLang("pack-not-use-hash", args[1]));
+                        return;
+                    }
+                    PackManager.refreshHash(pack);
+                    source.sendMessage(LangManager.getLang("success-refresh-hash", args[1]));
                 }
                 break;
             case "resend":

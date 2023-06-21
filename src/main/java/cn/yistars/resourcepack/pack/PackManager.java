@@ -74,4 +74,19 @@ public class PackManager {
                 break;
         }
     }
+
+    // 更新资源包哈希值
+    public static void refreshHash() {
+        for (ResourcePack pack : packs.values()) {
+            refreshHash(pack);
+        }
+    }
+
+    public static void refreshHash(ResourcePack pack) {
+        if (!pack.getUseHash()) return;
+        pack.refreshPack();
+
+        // 向 Redis 发送资源包哈希值更新
+        RedisAddon.sendPackHash(pack.getId(), pack.getHashString());
+    }
 }

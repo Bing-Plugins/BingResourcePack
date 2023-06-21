@@ -24,6 +24,7 @@ public class LangManager {
 
         switch (key) {
             case "pack-action-bar": case "unknown-pack":
+            case "success-refresh-hash": case "pack-not-use-hash":
                 msg = msg.replace("%pack-name%", args[0]);
                 break;
             case "unknown-parameter":
