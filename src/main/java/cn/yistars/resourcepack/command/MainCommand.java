@@ -176,20 +176,20 @@ public class MainCommand implements SimpleCommand {
         String[] args = invocation.arguments();
 
         if (!invocation.source().hasPermission("BingResourcePack.admin")) {
-            return CompletableFuture.completedFuture(new ArrayList<>());
+            return CompletableFuture.completedFuture(Collections.singletonList("get"));
         }
 
         final List<String> completions = new ArrayList<>();
 
         switch (args.length) {
             case 1:
-                String[] Commands = new String[]{"help", "reload", "get", "resend", "info"};
+                String[] Commands = new String[]{"help", "reload", "get", "resend", "info", "hash"};
                 // 通过开头判断
                 StringUtil.copyPartialMatches(args[0], Arrays.asList(Commands), completions);
                 break;
             case 2:
                 switch (args[0]) {
-                    case "info":
+                    case "info": case "hash":
                         ArrayList<String> packNames = new ArrayList<>(PackManager.packs.keySet());
                         StringUtil.copyPartialMatches(args[1], packNames, completions);
                         break;
