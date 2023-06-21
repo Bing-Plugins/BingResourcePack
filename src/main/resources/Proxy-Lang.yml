@@ -38,6 +38,8 @@ main-command-help: |-
   &e/BingResourcePack resend <all/server/match-rule/player> [value] &7- &r重新发送资源包
   &e/BingResourcePack get &7- &r玩家重新获取资源包
   &e/BingResourcePack info <pack-name> &7- &r查看资源包信息
+  &e/BingResourcePack hash &7- &r更新所有资源包哈希值
+  &e/BingResourcePack hash <pack-name> &7- &r更新指定资源包哈希值
 
 need-parameter: "&c缺少参数"
 unknown-parameter: "&c未知参数: %parameter%"
