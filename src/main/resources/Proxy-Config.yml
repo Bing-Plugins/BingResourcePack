@@ -27,5 +27,6 @@ resource-packs:
   under-tensai:
     url: https://src.yistars.net/resource-packs/UTP.zip
     force: true
+    hash: false
   uhc:
     url: https://src.yistars.net/resource-packs/UHC.zip

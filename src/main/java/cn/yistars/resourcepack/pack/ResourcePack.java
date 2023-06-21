@@ -16,26 +16,30 @@ import java.security.NoSuchAlgorithmException;
 public class ResourcePack {
     private final String id, url;
     private String hash;
-    private final Boolean showForce, showActionBar;
+    private final Boolean showForce, showActionBar, useHash;
     private ResourcePackInfo.Builder packBuilder;
 
-    public ResourcePack(String id, String url, Boolean showForce, Boolean showActionBar) {
+    public ResourcePack(String id, String url, Boolean showForce, Boolean showActionBar, Boolean useHash) {
         this.id = id;
         this.url = url;
         this.showForce = showForce;
         this.showActionBar = showActionBar;
+        this.useHash = useHash;
 
         refreshPack();
     }
 
     // 刷新数据包
     public void refreshPack() {
-        byte[] digest = getHash();
-
-        this.hash = Hex.encodeHexString(digest);
         this.packBuilder = BingResourcePack.instance.server.createResourcePackBuilder(url);
 
-        packBuilder.setHash(digest);
+        if (useHash) {
+            byte[] digest = getHash();
+            this.hash = Hex.encodeHexString(digest);
+
+            packBuilder.setHash(digest);
+        }
+
         packBuilder.setShouldForce(showForce);
 
         // 1.17+ 资源包提示信息
