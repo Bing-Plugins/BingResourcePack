@@ -28,8 +28,8 @@ resource-packs:
     url: https://src.yistars.net/resource-packs/HorrorFarmer.zip
     hash-url: https://res.yistars.net/get_resource_pack_hash.php?resource_pack=HorrorFarmer
   under-tensai:
-    url: https://src.yistars.net/resource-packs/UTP.zip
-    hash-url: https://res.yistars.net/get_resource_pack_hash.php?resource_pack=UTP
+    url: https://res.yistars.net/resource-packs/UnderTensai/UTP.zip
+    hash-url: https://res.yistars.net/get_resource_pack_hash.php?dir=UnderTensai&resource_pack=UTP
     force: true
     hash: false
   uhc:
