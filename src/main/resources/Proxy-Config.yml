@@ -19,14 +19,19 @@ match-rules:
 resource-packs:
   empty:
     url: https://src.yistars.net/resource-packs/Empty.zip
+    hash-url: https://res.yistars.net/get_resource_pack_hash.php?resource_pack=Empty
     show-action-bar: false
   rank:
     url: https://src.yistars.net/resource-packs/Rank.zip
+    hash-url: https://res.yistars.net/get_resource_pack_hash.php?resource_pack=Rank
   horror-farmer:
     url: https://src.yistars.net/resource-packs/HorrorFarmer.zip
+    hash-url: https://res.yistars.net/get_resource_pack_hash.php?resource_pack=HorrorFarmer
   under-tensai:
     url: https://src.yistars.net/resource-packs/UTP.zip
+    hash-url: https://res.yistars.net/get_resource_pack_hash.php?resource_pack=UTP
     force: true
     hash: false
   uhc:
     url: https://src.yistars.net/resource-packs/UHC.zip
+    hash-url: https://res.yistars.net/get_resource_pack_hash.php?resource_pack=UHC

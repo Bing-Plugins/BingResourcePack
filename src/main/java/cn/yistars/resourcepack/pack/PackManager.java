@@ -19,6 +19,7 @@ public class PackManager {
             packs.put(key, new ResourcePack(
                     key,
                     ConfigManager.config.getString("resource-packs." + key + ".url"),
+                    ConfigManager.config.getString("resource-packs." + key + ".hash-url"),
                     ConfigManager.config.getBoolean("resource-packs." + key + ".force", false),
                     ConfigManager.config.getBoolean("resource-packs." + key + ".show-action-bar", true),
                     ConfigManager.config.getBoolean("resource-packs." + key + ".hash", true)

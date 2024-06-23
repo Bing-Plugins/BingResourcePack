@@ -3,25 +3,33 @@ package cn.yistars.resourcepack.pack;
 import cn.yistars.resourcepack.BingResourcePack;
 import cn.yistars.resourcepack.config.ConfigManager;
 import cn.yistars.resourcepack.config.LangManager;
+import com.imaginarycode.minecraft.redisbungee.internal.json.JSONObject;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.player.ResourcePackInfo;
+import lombok.Getter;
 import org.apache.commons.codec.binary.Hex;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class ResourcePack {
-    private final String id, url;
+    @Getter
+    private final String id, url, hashUrl;
     private String hash;
+    @Getter
     private final Boolean showForce, showActionBar, useHash;
     private ResourcePackInfo.Builder packBuilder;
 
-    public ResourcePack(String id, String url, Boolean showForce, Boolean showActionBar, Boolean useHash) {
+    public ResourcePack(String id, String url, String hashUrl, Boolean showForce, Boolean showActionBar, Boolean useHash) {
         this.id = id;
         this.url = url;
+        this.hashUrl = hashUrl;
         this.showForce = showForce;
         this.showActionBar = showActionBar;
         this.useHash = useHash;
@@ -34,10 +42,15 @@ public class ResourcePack {
         this.packBuilder = BingResourcePack.instance.server.createResourcePackBuilder(url);
 
         if (useHash) {
-            byte[] digest = getHash();
-            this.hash = Hex.encodeHexString(digest);
+            if (hashUrl != null) this.hash = getHash(hashUrl);
 
-            packBuilder.setHash(digest);
+            if (this.hash != null) {
+                setHash(this.hash);
+            } else {
+                byte[] digest = getHash();
+                this.hash = Hex.encodeHexString(digest);
+                packBuilder.setHash(getHash());
+            }
         }
 
         packBuilder.setShouldForce(showForce);
@@ -57,6 +70,51 @@ public class ResourcePack {
         if (showActionBar) {
             player.sendActionBar(LangManager.getLang("pack-action-bar", getName()));
         }
+    }
+
+    // 根据接口获取哈希值
+    private String getHash(String hashUrl) {
+        try {
+            URL url = new URL(hashUrl);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+            conn.setDoOutput(true);
+            conn.connect();
+
+            if (conn.getResponseCode() == 200) {
+                try (InputStream is = conn.getInputStream()) {
+                    // 读取响应
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String inputLine;
+                    StringBuilder response = new StringBuilder();
+
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    in.close();
+
+                    // 输出响应
+                    System.out.println(id);
+                    System.out.println("Response: " + response);
+
+                    // 解析 JSON 响应
+                    JSONObject jsonResponse = new JSONObject(response.toString());
+                    if (jsonResponse.has("hash")) {
+                        return jsonResponse.getString("hash");
+                    } else if (jsonResponse.has("error")) {
+                        String error = jsonResponse.getString("error");
+                        BingResourcePack.instance.logger.warning("Error getting " + id + " resource pack: " + error);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            return null;
+        }
+        return null;
     }
 
     // 获取在线哈希值
@@ -100,27 +158,7 @@ public class ResourcePack {
         }
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
     public String getHashString() {
         return hash;
-    }
-
-    public Boolean getShowForce() {
-        return showForce;
-    }
-
-    public Boolean getShowActionBar() {
-        return showActionBar;
-    }
-
-    public Boolean getUseHash() {
-        return useHash;
     }
 }
