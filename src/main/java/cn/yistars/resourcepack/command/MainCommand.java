@@ -40,11 +40,11 @@ public class MainCommand implements SimpleCommand {
         switch (args[0].toLowerCase()) {
             case "reload":
                 if (!source.hasPermission("BingResourcePack.admin")) return;
-                if (BingResourcePack.instance.hasRedis) {
-                    RedisAddon.sendReload();
-                } else {
-                    ConfigManager.reloadConfig();
-                }
+                //if (BingResourcePack.instance.hasRedis) {
+                //    RedisAddon.sendReload();
+                //} else {
+                ConfigManager.reloadConfig();
+                //}
                 source.sendMessage(LangManager.getLang("reload-success"));
                 break;
             case "help":
