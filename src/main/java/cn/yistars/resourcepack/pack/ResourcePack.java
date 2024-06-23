@@ -97,10 +97,6 @@ public class ResourcePack {
                     }
                     in.close();
 
-                    // 输出响应
-                    System.out.println(id);
-                    System.out.println("Response: " + response);
-
                     // 解析 JSON 响应
                     JSONObject jsonResponse = new JSONObject(response.toString());
                     if (jsonResponse.has("hash")) {
